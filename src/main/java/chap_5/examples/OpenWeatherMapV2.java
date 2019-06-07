@@ -14,14 +14,14 @@ import java.util.regex.Pattern;
 public class OpenWeatherMapV2 {
     private static final String URL = "http://api.openweathermap.org/data/2.5/weather?q=London&APPID=";
 
-    public void run(){
+    public void run() {
         CommonUtils.exampleStart();
 
         Observable<String> source = Observable.just(URL + "API key")
-        .map(OkHttpHelper::getWithLog)
-        .subscribeOn(Schedulers.io())
-        .share()
-        .observeOn(Schedulers.newThread());
+                .map(OkHttpHelper::getWithLog)
+                .subscribeOn(Schedulers.io())
+                .share()
+                .observeOn(Schedulers.newThread());
 
         source.map(this::parseTemperature).subscribe(Log::it);
         source.map(this::parseCityName).subscribe(Log::it);
@@ -29,6 +29,7 @@ public class OpenWeatherMapV2 {
 
         CommonUtils.sleep(1000);
     }
+
     private String parseTemperature(String json) {
         return parse(json, "\"temp\":[0-9]*.[0-9]*");
     }
@@ -49,6 +50,7 @@ public class OpenWeatherMapV2 {
         }
         return "N/A";
     }
+
     public static void main(String[] args) {
         OpenWeatherMapV2 demo = new OpenWeatherMapV2();
         demo.run();
