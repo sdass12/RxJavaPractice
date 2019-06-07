@@ -6,6 +6,9 @@ import java.util.Random;
 
 public class CommonUtils {
 
+    public static final String GITHUB_ROOT =
+            "https://raw.githubusercontent.com/sdass12/RxJavaPractice/master/";
+
     public static final String ERROR_CODE = "-500";
 
     public static long startTime;
