@@ -15,17 +15,17 @@ public class SwitchMapExample {
         Observable<String> source = Observable.interval(100L, TimeUnit.MILLISECONDS)
                 .map(Long::intValue)
                 .map(idx -> balls[idx])
-                // ballsÀÇ Å©±â¸¸Å­ balls¾È¿¡ ÀÖ´Â °ªµéÀ» ²¨³¿
+                // ballsì˜ í¬ê¸°ë§Œí¼ ballsì•ˆì— ìžˆëŠ” ê°’ë“¤ì„ êº¼ëƒ„
                 .take(balls.length)
-                // Áß°£ Ã³¸®°úÁ¤À» Ãâ·ÂÇØÁÜ
+                // ì¤‘ê°„ ì²˜ë¦¬ê³¼ì •ì„ ì¶œë ¥í•´ì¤Œ
                 .doOnNext(Log::dt)
                 .switchMap(ball -> Observable.interval(200L,TimeUnit.MILLISECONDS)
                         /*
-                         * 0.2ÃÊ¸¶´Ù À§¿¡¼­ ³»·Á¿Â °ª¿¡ ¡Þ¸¦ ºÙÀÓ.
-                         * ´Ü, Ã³¸®ÇÏ´ø µµÁß »õ·Î¿î ¿äÃ»ÀÌ ¿Â´Ù¸é Ã³¸®ÇÏ´ø ÀÏÀ» ¹«½ÃÇÏ°í »õ·Î¿î ¿äÃ»À» Ã³¸®ÇÔ.
+                         * 0.2ì´ˆë§ˆë‹¤ ìœ„ì—ì„œ ë‚´ë ¤ì˜¨ ê°’ì— â—‡ë¥¼ ë¶™ìž„.
+                         * ë‹¨, ì²˜ë¦¬í•˜ë˜ ë„ì¤‘ ìƒˆë¡œìš´ ìš”ì²­ì´ ì˜¨ë‹¤ë©´ ì²˜ë¦¬í•˜ë˜ ì¼ì„ ë¬´ì‹œí•˜ê³  ìƒˆë¡œìš´ ìš”ì²­ì„ ì²˜ë¦¬í•¨.
                          */
-                    .map(notUsed -> ball + "¡Þ")
-                    .take(2)
+                        .map(notUsed -> ball + "â—‡")
+                        .take(2)
                 );
         source.subscribe(Log::it);
         CommonUtils.sleep(2000);
@@ -33,18 +33,18 @@ public class SwitchMapExample {
 }
 
 /*
- * 100ms¸¶´Ù ballÀ» Ãâ·ÂÇÏ°í 200ms¸¶´Ù ball¿¡ ¡Þ¸¦ ºÙ¿©ÁÜ
- * Ã¹ ¹øÂ° interval()¿¡¼­ 1, 3, 5°¡ °¢°¢ »ý¼º µÈ°É È®ÀÎ ÇÒ ¼ö ÀÖÀ½
- * ±× ÈÄ, 1¿¡ ¡Þ¸¦ Ãß°¡ÇØÁÖ´ø °úÁ¤¿¡¼­ 3¿¡ ¡Þ¸¦ ºÙÀÌ¶ó´Â ¿äÃ»ÀÌ µé¾î¿À¸é¼­ 1ÀÇ Ã³¸®¸¦ ÁßÁö½ÃÅ´
- * 3 ¶ÇÇÑ ¸¶Âù°¡Áö·Î ÁßÁöµÇ°í 5¸¸ ¡Þ¸¦ ºÙ¿©ÁÜ(take(2)ÀÌ±â ¶§¹®¿¡ 2¹ø ¹Ýº¹)
+ * 100msë§ˆë‹¤ ballì„ ì¶œë ¥í•˜ê³  200msë§ˆë‹¤ ballì— â—‡ë¥¼ ë¶™ì—¬ì¤Œ
+ * ì²« ë²ˆì§¸ interval()ì—ì„œ 1, 3, 5ê°€ ê°ê° ìƒì„± ëœê±¸ í™•ì¸ í•  ìˆ˜ ìžˆìŒ
+ * ê·¸ í›„, 1ì— â—‡ë¥¼ ì¶”ê°€í•´ì£¼ë˜ ê³¼ì •ì—ì„œ 3ì— â—‡ë¥¼ ë¶™ì´ë¼ëŠ” ìš”ì²­ì´ ë“¤ì–´ì˜¤ë©´ì„œ 1ì˜ ì²˜ë¦¬ë¥¼ ì¤‘ì§€ì‹œí‚´
+ * 3 ë˜í•œ ë§ˆì°¬ê°€ì§€ë¡œ ì¤‘ì§€ë˜ê³  5ë§Œ â—‡ë¥¼ ë¶™ì—¬ì¤Œ(take(2)ì´ê¸° ë•Œë¬¸ì— 2ë²ˆ ë°˜ë³µ)
  *
- * ¶ÇÇÑ ½º·¹µåÀÇ ÀÌ¸§À» º¸¸é µ¥ÀÌÅÍ¸¦ ¹ßÇàÇÏ´Â ½º·¹µå¿Í ±× °ªÀ» Àü´ÞÇÏ´Â ½º·¹µå°¡ ´Ù¸£´Ù´Â °ÍÀ» ¾Ë ¼ö ÀÖÀ½
- * concatMap(), flatMap(), switchMap() ÇÔ¼öµéÀÇ °á°úµéÀ» º¸¸é 2, 3, 4¹ø¸¸ ¹ß»ýÇß´ø °ÍÀ» È®ÀÎÇÒ ¼ö ÀÖÀ½
- * ±× ÀÌÀ¯´Â 1¹ø ½º·¹µå´Â µ¥ÀÌÅÍ¸¦ ¹ßÇàÇÏ´Âµ¥ »ç¿µµÆ±â ¶§¹®ÀÌ¿´À½.
-°á°ú
+ * ë˜í•œ ìŠ¤ë ˆë“œì˜ ì´ë¦„ì„ ë³´ë©´ ë°ì´í„°ë¥¼ ë°œí–‰í•˜ëŠ” ìŠ¤ë ˆë“œì™€ ê·¸ ê°’ì„ ì „ë‹¬í•˜ëŠ” ìŠ¤ë ˆë“œê°€ ë‹¤ë¥´ë‹¤ëŠ” ê²ƒì„ ì•Œ ìˆ˜ ìžˆìŒ
+ * concatMap(), flatMap(), switchMap() í•¨ìˆ˜ë“¤ì˜ ê²°ê³¼ë“¤ì„ ë³´ë©´ 2, 3, 4ë²ˆë§Œ ë°œìƒí–ˆë˜ ê²ƒì„ í™•ì¸í•  ìˆ˜ ìžˆìŒ
+ * ê·¸ ì´ìœ ëŠ” 1ë²ˆ ìŠ¤ë ˆë“œëŠ” ë°ì´í„°ë¥¼ ë°œí–‰í•˜ëŠ”ë° ì‚¬ì˜ëê¸° ë•Œë¬¸ì´ì˜€ìŒ.
+ê²°ê³¼
 RxComputationThreadPool-1 | 261 | debug = 1
 RxComputationThreadPool-1 | 362 | debug = 3
 RxComputationThreadPool-1 | 463 | debug = 5
-RxComputationThreadPool-4 | 665 | value = 5¡Þ
-RxComputationThreadPool-4 | 864 | value = 5¡Þ
+RxComputationThreadPool-4 | 665 | value = 5â—‡
+RxComputationThreadPool-4 | 864 | value = 5â—‡
  */
