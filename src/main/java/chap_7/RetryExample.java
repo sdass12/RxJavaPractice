@@ -113,6 +113,7 @@ public class RetryExample {
         RxComputationThreadPool-2 | debug = delay retry by 3 seconds
          */
     }
+
     public static void main(String[] args) {
         RetryExample demo = new RetryExample();
         //demo.retry();
