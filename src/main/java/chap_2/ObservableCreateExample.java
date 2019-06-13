@@ -26,13 +26,13 @@ public class ObservableCreateExample {
             public void accept(Integer data) throws Exception {
                 System.out.println(data);
             }
-
-            //source 변수는 차가운 Observable이다.
-            //첫 번째 문장을 실행시켜도 데이터를 발행시키지 않고,
-            //이 문장이 실행될 때 100, 200, 300의 값을 발행함.
-            //즉, subscribe() 함수를 호출하지 않으면 아무것도 출력되지 않음.
-
         });
+        /*
+         * source 는 차가운 Observable임.
+         * 첫 번째 문장을 실행시켜도 데이터를 발행시키지 않고,
+         * 이 문장이 실행될 때 100, 200, 300의 값을 발행함.
+         * 즉, subscribe() 함수를 호출하지 않으면 아무것도 발행되지 않음.
+         */
     }
 }
 

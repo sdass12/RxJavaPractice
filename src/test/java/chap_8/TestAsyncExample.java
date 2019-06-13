@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
-import common.GsonHelper;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class TestAsyncExample {
     @Test
     @DisplayName("test Observable.interval() wrong")
-    // 테스트 코드를 비활성화 시킬 경우 @Disabled를 추가함
+    // 테스트 코드를 비활성화 시킬 경우 @Ignore를 추가함
     //@Ignore
     public void testIntervalWrongWay(){
         Observable<Integer> source = Observable.interval(100L, TimeUnit.MILLISECONDS)

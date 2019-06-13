@@ -6,15 +6,17 @@ import io.reactivex.subjects.AsyncSubject;
 public class AsyncSubjectExample {
     public static void main(String[] args) {
         AsyncSubject<String> subject = AsyncSubject.create();
-        subject.subscribe(data -> System.out.println("subscriber #1 => " + data));  //onComplete()가 실행되기 전 마지막 값을 발행함
+        //onComplete()가 실행되기 전 마지막 값을 발행함
+        subject.subscribe(data -> System.out.println("subscriber #1 => " + data));
         subject.onNext("1");
         subject.onNext("3");
-        subject.subscribe(data -> System.out.println("subscriber #2 => " + data));  //onComplete()가 실행되기 전 마지막 값을 발행함
+        //onComplete()가 실행되기 전 마지막 값을 발행함
+        subject.subscribe(data -> System.out.println("subscriber #2 => " + data));
         subject.onNext("5");
         subject.onComplete();
 
 
-        /////////Observable의 구독자로 동작 예제/////////
+        ///////// Observable의 구독자로 동작 예제 /////////
 
         Float[] temperature = {10.1f, 13.4f, 12.5f};
         Observable<Float> source = Observable.fromArray(temperature);
@@ -23,7 +25,7 @@ public class AsyncSubjectExample {
         subject2.subscribe(data -> System.out.println("Subscriber #1 => " + data));
         source.subscribe(subject2);
 
-        /////////afterComplete/////////
+        ///////// afterComplete /////////
         AsyncSubject<Integer> subject3 = AsyncSubject.create();
         subject3.onNext(10);
         subject3.onNext(11);

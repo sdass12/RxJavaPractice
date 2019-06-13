@@ -16,3 +16,5 @@ public class ObservableFromCallableExample {
 
     }
 }
+// 결과
+// Hello Callable
