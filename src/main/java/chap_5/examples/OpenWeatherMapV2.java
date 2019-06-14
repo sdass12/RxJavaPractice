@@ -4,10 +4,8 @@ import common.CommonUtils;
 import common.Log;
 import common.OkHttpHelper;
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.schedulers.Schedulers;
 
-import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

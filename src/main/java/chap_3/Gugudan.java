@@ -32,9 +32,8 @@ public class Gugudan {
          * num은 밑에 줄에서 1~9까지 반복되는 row에 곱해짐
          */
                 Observable.range(1, 9).map(row -> num + "*" + row + "=" + dan * row); //num과 dan은 같음(num을 추천)
-        /*
-         * dan을 flatMap(gugudan)을 이용해서 9줄로 바꾸고 그 값은 source2에 저장 됨.
-         */
+
+         //dan을 flatMap(gugudan)을 이용해서 9줄로 바꾸고 그 값은 source2에 저장 됨.
         Observable<String> source2 = Observable.just(dan).flatMap(gugudan);
         //source2를 구독해서 source2 안에 있는 값을 발행시킴.
         source2.subscribe(data -> System.out.println("ver.2 | " + data));

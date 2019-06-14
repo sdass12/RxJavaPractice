@@ -43,12 +43,12 @@ public class BackpressureExample {
         CommonUtils.sleep(18_000);
         /* usingDrop() 결과
                         <전략>
-        RxComputationThreadPool-1 | 12481 | value = 121
-        RxComputationThreadPool-1 | 12581 | value = 122
-        RxComputationThreadPool-1 | 12681 | value = 123
-        RxComputationThreadPool-1 | 12781 | value = 124
-        RxComputationThreadPool-1 | 12881 | value = 125
-        RxComputationThreadPool-1 | 12981 | value = 126
+        RxComputationThreadPool-1 | 13627 | value = 123
+        RxComputationThreadPool-1 | 13727 | value = 124
+        RxComputationThreadPool-1 | 13827 | value = 125
+        RxComputationThreadPool-1 | 13927 | value = 126
+        RxComputationThreadPool-1 | 14027 | value = 127
+        RxComputationThreadPool-1 | 14127 | value = 128
          */
     }
     public void usingLatest(){
@@ -79,8 +79,8 @@ public class BackpressureExample {
     public static void main(String[] args) {
         BackpressureExample demo = new BackpressureExample();
 
-        demo.usingBuffer();
-        //demo.usingDrop();
+        //demo.usingBuffer();
+        demo.usingDrop();
         //demo.usingLatest();
     }
 }
